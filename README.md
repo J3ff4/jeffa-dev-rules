@@ -46,3 +46,7 @@ Rule changes reach every machine on the next session.
 - **The guard is a safety net, not a sandbox.** It catches the common paths: named
   files, bulk staging, readers like `cat`/`grep`/`source`. The rules cover the rest.
 - **Turn the commit scan off:** `git config --global --unset core.hooksPath`.
+
+## License
+
+[MIT](LICENSE)

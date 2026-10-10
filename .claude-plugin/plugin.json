@@ -2,7 +2,10 @@
   "name": "jeffa-dev-rules",
   "version": "1.0.0",
   "description": "Owner-first engineering rules for every session, plus guards that keep secrets out of git and out of the transcript.",
-  "author": { "name": "J3ff4", "url": "https://github.com/J3ff4" },
+  "author": {
+    "name": "J3ff4",
+    "url": "https://github.com/J3ff4"
+  },
   "repository": "https://github.com/J3ff4/jeffa-dev-rules",
   "hooks": {
     "SessionStart": [
@@ -28,5 +31,6 @@
         ]
       }
     ]
-  }
+  },
+  "license": "MIT"
 }
