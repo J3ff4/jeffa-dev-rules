@@ -1,0 +1,15 @@
+{
+  "name": "jeffa-dev-rules",
+  "owner": { "name": "J3ff4" },
+  "metadata": { "description": "Owner-first engineering rules and secret guards for Claude Code", "version": "1.0.0" },
+  "plugins": [
+    {
+      "name": "jeffa-dev-rules",
+      "source": "./",
+      "description": "Owner-first engineering rules for every session, plus guards that keep secrets out of git and out of the transcript.",
+      "version": "1.0.0",
+      "category": "workflow",
+      "keywords": ["rules", "security", "secrets", "owasp", "gitleaks", "karpathy"]
+    }
+  ]
+}

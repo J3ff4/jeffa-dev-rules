@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Global pre-commit (core.hooksPath): block staged secrets, then run the repo's own hook.
+set -euo pipefail
+
+GITLEAKS="$(command -v gitleaks || echo "$HOME/.local/bin/gitleaks")"
+if [ ! -x "$GITLEAKS" ]; then
+  echo "pre-commit: gitleaks not found; refusing to commit unscanned. Install it or fix PATH." >&2
+  exit 1
+fi
+
+# Staged changes only. --redact keeps secret values out of the terminal/transcript.
+if ! "$GITLEAKS" git --pre-commit --staged --redact --no-banner -v; then
+  echo "pre-commit: gitleaks found a secret in staged changes. Unstage it (git restore --staged <file>), move it to an ignored .env, rotate it if it was ever pushed." >&2
+  exit 1
+fi
+
+# core.hooksPath disables .git/hooks; chain so husky/pre-commit repos still run theirs.
+repo_hook="$(git rev-parse --git-common-dir)/hooks/pre-commit"
+if [ -x "$repo_hook" ]; then
+  exec "$repo_hook" "$@"
+fi
